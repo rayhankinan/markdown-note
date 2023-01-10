@@ -19,12 +19,12 @@
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*", "src/*"],
-            "@assets": ["src/assets/*"],
-            "@components": ["src/components/*"],
-            "@layout": ["src/layout/*"],
-            "@pages": ["src/pages/*"],
-            "@services": ["src/services/*"],
-            "@utils": ["src/utils/*"]
+            "@assets/*": ["src/assets/*"],
+            "@components/*": ["src/components/*"],
+            "@layout/*": ["src/layout/*"],
+            "@pages/*": ["src/pages/*"],
+            "@services/*": ["src/services/*"],
+            "@utils/*": ["src/utils/*"]
         }
     },
     "include": ["src"],

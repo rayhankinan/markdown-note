@@ -13,11 +13,11 @@
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*", "src/*"],
-            "@config": ["src/config/*"],
-            "@controllers": ["src/controllers/*"],
-            "@middlewares": ["src/middlewares/*"],
-            "@routes": ["src/routes/*"],
-            "@subscribers": ["src/subscribers/*"]
+            "@config/*": ["src/config/*"],
+            "@controllers/*": ["src/controllers/*"],
+            "@middlewares/*": ["src/middlewares/*"],
+            "@routes/*": ["src/routes/*"],
+            "@subscribers/*": ["src/subscribers/*"]
         }
     },
     "include": ["src/**/*"]

@@ -15,9 +15,12 @@
             "*": ["node_modules/*", "src/*"],
             "@config/*": ["src/config/*"],
             "@controllers/*": ["src/controllers/*"],
+            "@entities/*": ["src/entities/*"],
+            "@enum/*": ["src/enum/*"],
             "@middlewares/*": ["src/middlewares/*"],
             "@routes/*": ["src/routes/*"],
-            "@subscribers/*": ["src/subscribers/*"]
+            "@subscribers/*": ["src/subscribers/*"],
+            "@utils/*": ["src/utils/*"]
         }
     },
     "include": ["src/**/*"]

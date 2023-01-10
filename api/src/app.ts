@@ -1,7 +1,6 @@
 import express, { Express } from "express";
 import { DataSource } from "typeorm";
 import cors from "cors";
-import mongoose from "mongoose";
 import serverConfig from "@config/server";
 import corsConfig from "@config/cors";
 import postgresConfig from "@config/postgres";
@@ -9,12 +8,14 @@ import mongoConfig from "@config/mongo";
 import "reflect-metadata";
 
 class App {
-    server: Express;
-    dataSource: DataSource;
+    private server: Express;
+    private dataSource: DataSource;
+    private objectSource: DataSource;
 
     constructor() {
         this.server = express();
         this.dataSource = new DataSource(postgresConfig);
+        this.objectSource = new DataSource(mongoConfig);
 
         this.server.use(
             express.json(),
@@ -26,7 +27,7 @@ class App {
     async run() {
         await Promise.all([
             this.dataSource.initialize(),
-            mongoose.connect(mongoConfig.URI),
+            this.objectSource.initialize(),
         ]);
 
         this.server.listen(serverConfig.port, () => {

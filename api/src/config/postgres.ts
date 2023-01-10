@@ -1,4 +1,7 @@
 import { DataSourceOptions } from "typeorm";
+import User from "@entities/postgresql/user";
+import Admin from "@entities/postgresql/admin";
+import Viewer from "@entities/postgresql/viewer";
 
 const dataSourceOptions: DataSourceOptions = {
     type: "postgres",
@@ -18,7 +21,7 @@ const dataSourceOptions: DataSourceOptions = {
     },
     synchronize: true,
     logging: true,
-    entities: [],
+    entities: [User, Admin, Viewer],
     subscribers: [],
     migrations: [],
 };

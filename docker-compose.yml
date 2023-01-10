@@ -5,15 +5,10 @@ services:
         image: nginx:latest
         container_name: markdown-note-server
         restart: always
-        environment:
-            API_HOSTNAME: ${API_HOSTNAME}
-            API_PORT: ${API_PORT}
-            CLIENT_HOSTNAME: ${CLIENT_HOSTNAME}
-            CLIENT_PORT: ${CLIENT_PORT}
+        hostname: markdown-note-service
         ports:
-            - ${SERVER_HTTP_PORT}
-            - ${SERVER_HTTPS_PORT}
-        hostname: ${SERVER_HOSTNAME}
+            - "80:80"
+            - "443:443"
         volumes:
             - ./nginx/conf.d/:/etc/nginx/conf.d/
         networks:
@@ -28,7 +23,7 @@ services:
         restart: always
         environment:
             PORT: ${API_PORT}
-        hostname: ${API_HOSTNAME}
+        hostname: markdown-note-api
         volumes:
             - ./api:/app
             - /app/node_modules
@@ -43,8 +38,8 @@ services:
         container_name: markdown-note-front-end
         restart: always
         environment:
-            VITE_PORT: ${CLIENT_PORT}
-        hostname: ${CLIENT_HOSTNAME}
+            PORT: ${CLIENT_PORT}
+        hostname: markdown-note-client
         volumes:
             - ./client:/app
             - /app/node_modules

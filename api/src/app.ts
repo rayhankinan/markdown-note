@@ -8,7 +8,7 @@ class App {
     }
 
     run() {
-        this.server.listen();
+        this.server.listen(3000);
     }
 }
 

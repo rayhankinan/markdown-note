@@ -1,47 +1,56 @@
-version: '3.8'
+version: "3.8"
 services:
-  # NGINX Server
-  web-server:
-    image: nginx:latest
-    container_name: markdown-note-server
-    restart: always
-    ports:
-      - ${SERVER_HTTP_PORT}
-      - ${SERVER_HTTPS_PORT}
-    hostname: ${SERVER_HOSTNAME}
-    volumes:
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - app-network
+    # NGINX Server
+    web-server:
+        image: nginx:latest
+        container_name: markdown-note-server
+        restart: always
+        environment:
+            API_HOSTNAME: ${API_HOSTNAME}
+            API_PORT: ${API_PORT}
+            CLIENT_HOSTNAME: ${CLIENT_HOSTNAME}
+            CLIENT_PORT: ${CLIENT_PORT}
+        ports:
+            - ${SERVER_HTTP_PORT}
+            - ${SERVER_HTTPS_PORT}
+        hostname: ${SERVER_HOSTNAME}
+        volumes:
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-network
 
-  # Express Typescript API
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: markdown-note-back-end
-    restart: always
-    hostname: ${API_HOSTNAME}
-    volumes:
-      - ./api:/app
-      - /app/node_modules
-    networks:
-      - app-network
+    # Express Typescript API
+    api:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        container_name: markdown-note-back-end
+        restart: always
+        environment:
+            PORT: ${API_PORT}
+        hostname: ${API_HOSTNAME}
+        volumes:
+            - ./api:/app
+            - /app/node_modules
+        networks:
+            - app-network
 
-  # Vite React Typescript
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: markdown-note-front-end
-    restart: always
-    hostname: ${CLIENT_HOSTNAME}
-    volumes:
-      - ./client:/app
-      - /app/node_modules
-    networks:
-      - app-network
+    # Vite React Typescript
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        container_name: markdown-note-front-end
+        restart: always
+        environment:
+            VITE_PORT: ${CLIENT_PORT}
+        hostname: ${CLIENT_HOSTNAME}
+        volumes:
+            - ./client:/app
+            - /app/node_modules
+        networks:
+            - app-network
 
 networks:
-  app-network:
-    driver: bridge
+    app-network:
+        driver: bridge

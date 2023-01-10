@@ -1,13 +1,16 @@
 import express, { Express } from "express";
+import { DataSource } from "typeorm";
+import "reflect-metadata";
 
 class App {
     server: Express;
+    dataSource: DataSource;
 
     constructor() {
         this.server = express();
     }
 
-    run() {
+    async run() {
         this.server.listen(3000);
     }
 }

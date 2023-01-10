@@ -1,4 +1,6 @@
 version: "3.8"
+
+# Service
 services:
     # NGINX Server
     web-server:
@@ -23,12 +25,16 @@ services:
         restart: always
         environment:
             PORT: ${API_PORT}
-        hostname: markdown-note-api
+        hostname: markdown-note-api-service
         volumes:
             - ./api:/app
             - /app/node_modules
         networks:
             - app-network
+        depends_on:
+            - postgres
+            - mongo
+            - redis
 
     # Vite React Typescript
     client:
@@ -39,13 +45,67 @@ services:
         restart: always
         environment:
             PORT: ${CLIENT_PORT}
-        hostname: markdown-note-client
+        hostname: markdown-note-client-service
         volumes:
             - ./client:/app
             - /app/node_modules
         networks:
             - app-network
 
+    # PostgreSQL
+    postgres:
+        image: postgres:latest
+        container_name: markdown-note-postgres
+        restart: always
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DB}
+        hostname: markdown-note-postgres-service
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        networks:
+            - app-network
+
+    # MongoDB
+    mongo:
+        image: mongo:latest
+        container_name: markdown-note-mongodb
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+            MONGO_INITDB_USERNAME: ${MONGO_INITDB_USERNAME}
+            MONGO_INITDB_PASSWORD: ${MONGO_INITDB_PASSWORD}
+            MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+        hostname: markdown-note-mongodb-service
+        volumes:
+            - mongo:/data/db
+            - ./mongo/settings/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+        networks:
+            - app-network
+
+    # Redis
+    redis:
+        image: redis:latest
+        container_name: markdown-note-redis
+        restart: always
+        hostname: markdown-note-redis-service
+        volumes:
+            - redis:/data
+        networks:
+            - app-network
+
+# Networks
 networks:
     app-network:
         driver: bridge
+
+# Volumes
+volumes:
+    postgres:
+        driver: local
+    mongo:
+        driver: local
+    redis:
+        driver: local

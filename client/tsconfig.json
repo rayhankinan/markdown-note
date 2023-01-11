@@ -21,6 +21,8 @@
             "*": ["node_modules/*", "src/*"],
             "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
+            "@context/*": ["src/context/*"],
+            "@enum/*": ["src/enum/*"],
             "@layout/*": ["src/layout/*"],
             "@pages/*": ["src/pages/*"],
             "@services/*": ["src/services/*"],

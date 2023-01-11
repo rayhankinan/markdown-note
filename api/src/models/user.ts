@@ -12,13 +12,13 @@ class User extends Base {
     @PrimaryGeneratedColumn()
     readonly id: number;
 
-    @Column({ unique: true })
+    @Column({ type: "varchar", length: 255, unique: true })
     public username: string;
 
-    @Column()
+    @Column({ type: "varchar", length: 255 })
     public password: string;
 
-    @Column({ nullable: true })
+    @Column({ type: "varchar", length: 255, nullable: true })
     public profile: string;
 }
 

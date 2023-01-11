@@ -1,4 +1,5 @@
 import {
+    Column,
     Entity,
     JoinColumn,
     JoinTable,
@@ -12,11 +13,14 @@ import Grade from "./grade";
 
 @Entity()
 class Course extends Base {
-    @PrimaryColumn()
+    @PrimaryColumn({ type: "varchar", length: 255 })
     public code: string;
 
-    @PrimaryColumn()
+    @PrimaryColumn({ type: "varchar", length: 255 })
     public name: string;
+
+    @Column({ type: "text", nullable: true })
+    public description: string;
 
     @ManyToMany(() => Lecturer, { cascade: true })
     @JoinTable({ name: "teaches" })

@@ -17,7 +17,7 @@ class Major extends Base {
     @PrimaryColumn()
     public prefix: number;
 
-    @PrimaryColumn()
+    @PrimaryColumn({ type: "varchar", length: 255 })
     public name: string;
 
     @Column({ type: "enum", enum: Faculty })

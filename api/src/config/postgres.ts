@@ -7,6 +7,7 @@ import Grade from "@models/grade";
 import Course from "@models/course";
 import Lecturer from "@models/lecturer";
 import Page from "@models/page";
+import UserSubscriber from "@subscribers/user";
 
 const dataSourceOptions: DataSourceOptions = {
     type: "postgres",
@@ -27,7 +28,7 @@ const dataSourceOptions: DataSourceOptions = {
     synchronize: true,
     logging: true,
     entities: [User, Admin, Viewer, Major, Grade, Course, Lecturer, Page],
-    subscribers: [],
+    subscribers: [UserSubscriber],
     migrations: [],
 };
 

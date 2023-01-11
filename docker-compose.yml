@@ -44,6 +44,8 @@ services:
             SERVER_HOSTNAME: ${SERVER_HOSTNAME}
             SERVER_HTTP_PORT: ${SERVER_HTTP_PORT}
             SERVER_HTTPS_PORT: ${SERVER_HTTPS_PORT}
+            NODE_ENV: ${NODE_ENV}
+            DEBUG: ${DEBUG}
         hostname: markdown-note-api-service
         volumes:
             - ./api:/app

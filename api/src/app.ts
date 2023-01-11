@@ -50,6 +50,9 @@ class Server {
                 console.log(
                     `Worker ${worker.process.pid} died: ${code} ${signal}`
                 );
+
+                // Restarting Worker
+                cluster.fork();
             });
         } else {
             http.createServer(this.app).listen(serverConfig.port);

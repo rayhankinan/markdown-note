@@ -1,3 +1,3 @@
-import app from "./app";
+import server from "./app";
 
-app.run();
+server.run();

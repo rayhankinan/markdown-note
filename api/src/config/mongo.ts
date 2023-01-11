@@ -1,5 +1,5 @@
 import { DataSourceOptions } from "typeorm";
-import File from "entities/mongodb/file";
+import File from "@entities/file";
 
 const mongoConfig: DataSourceOptions = {
     type: "mongodb",

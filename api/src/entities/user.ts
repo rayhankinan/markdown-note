@@ -1,9 +1,17 @@
-import { Column, Entity, TableInheritance } from "typeorm";
-import BasePostgreSQL from "@entities/postgresql/base";
+import {
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    TableInheritance,
+} from "typeorm";
+import Base from "@entities/base";
 
 @Entity()
 @TableInheritance({ column: "role" })
-class User extends BasePostgreSQL {
+class User extends Base {
+    @PrimaryGeneratedColumn()
+    readonly id: number;
+
     @Column({ unique: true })
     public username: string;
 

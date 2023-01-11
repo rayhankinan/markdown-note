@@ -1,6 +1,6 @@
 import { ChildEntity, Column, OneToMany } from "typeorm";
-import User from "@entities/postgresql/user";
-import Major from "@entities/postgresql/major";
+import User from "@entities/user";
+import Major from "@entities/major";
 import Role from "@enum/role";
 
 @ChildEntity()

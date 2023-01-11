@@ -1,16 +1,11 @@
 import {
     CreateDateColumn,
     DeleteDateColumn,
-    ObjectID,
-    ObjectIdColumn,
     UpdateDateColumn,
     VersionColumn,
 } from "typeorm";
 
-abstract class BaseMongoDB {
-    @ObjectIdColumn()
-    readonly id: ObjectID;
-
+abstract class Base {
     @CreateDateColumn()
     readonly createdDate: Date;
 
@@ -24,4 +19,4 @@ abstract class BaseMongoDB {
     readonly version: number;
 }
 
-export default BaseMongoDB;
+export default Base;

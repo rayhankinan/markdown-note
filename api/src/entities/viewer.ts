@@ -1,5 +1,5 @@
 import { ChildEntity, Column } from "typeorm";
-import User from "@entities/postgresql/user";
+import User from "@entities/user";
 import Role from "@enum/role";
 
 @ChildEntity()

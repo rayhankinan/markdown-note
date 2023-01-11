@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     TableInheritance,
 } from "typeorm";
-import Base from "@entities/base";
+import Base from "@models/base";
 
 @Entity()
 @TableInheritance({ column: "role" })

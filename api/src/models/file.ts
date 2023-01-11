@@ -1,12 +1,12 @@
 import { Column, Entity, ObjectID, ObjectIdColumn } from "typeorm";
-import Base from "@entities/base";
+import Base from "@models/base";
 
 @Entity()
 class File extends Base {
     @ObjectIdColumn()
     readonly id: ObjectID;
 
-    @Column()
+    @Column({ unique: true })
     public filename: string;
 
     @Column()

@@ -15,7 +15,7 @@
             "*": ["node_modules/*", "src/*"],
             "@config/*": ["src/config/*"],
             "@controllers/*": ["src/controllers/*"],
-            "@entities/*": ["src/entities/*"],
+            "@models/*": ["src/models/*"],
             "@enum/*": ["src/enum/*"],
             "@middlewares/*": ["src/middlewares/*"],
             "@routes/*": ["src/routes/*"],

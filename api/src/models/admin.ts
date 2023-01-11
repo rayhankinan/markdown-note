@@ -1,6 +1,6 @@
 import { ChildEntity, Column, OneToMany } from "typeorm";
-import User from "@entities/user";
-import Major from "@entities/major";
+import User from "@models/user";
+import Major from "@models/major";
 import Role from "@enum/role";
 
 @ChildEntity()

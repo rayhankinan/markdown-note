@@ -1,14 +1,13 @@
 import {
     Entity,
     JoinColumn,
-    JoinTable,
-    ManyToMany,
     ManyToOne,
+    OneToMany,
     PrimaryColumn,
 } from "typeorm";
-import Base from "@entities/base";
-import Major from "entities/major";
-import Lecturer from "entities/lecturer";
+import Base from "@models/base";
+import Major from "@models/major";
+import Course from "@models/course";
 
 @Entity()
 class Grade extends Base {
@@ -22,9 +21,8 @@ class Grade extends Base {
     @JoinColumn({ name: "majorId" })
     public major: Promise<Major>;
 
-    @ManyToMany(() => Lecturer)
-    @JoinTable({ name: "teaches" })
-    public lecturers: Promise<Lecturer[]>;
+    @OneToMany(() => Course, (course) => course.grade)
+    readonly courses: Promise<Course[]>;
 }
 
 export default Grade;

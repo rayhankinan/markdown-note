@@ -7,9 +7,9 @@ import {
     ManyToOne,
     PrimaryColumn,
 } from "typeorm";
-import Base from "@entities/base";
-import Major from "entities/major";
-import Grade from "entities/grade";
+import Base from "@models/base";
+import Major from "@models/major";
+import Course from "@models/course";
 
 @Entity()
 class Lecturer extends Base {
@@ -23,9 +23,9 @@ class Lecturer extends Base {
     @JoinColumn({ name: "majorId" })
     public major: Promise<Major>;
 
-    @ManyToMany(() => Grade)
+    @ManyToMany(() => Course, { cascade: true })
     @JoinTable({ name: "teaches" })
-    public grades: Promise<Grade[]>;
+    public grades: Promise<Course[]>;
 }
 
 export default Lecturer;

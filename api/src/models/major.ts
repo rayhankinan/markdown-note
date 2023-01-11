@@ -6,10 +6,10 @@ import {
     OneToMany,
     PrimaryColumn,
 } from "typeorm";
-import Base from "@entities//base";
-import Admin from "@entities/admin";
-import Grade from "@entities/grade";
-import Lecturer from "@entities/lecturer";
+import Base from "@models/base";
+import Admin from "@models/admin";
+import Grade from "@models/grade";
+import Lecturer from "@models/lecturer";
 import Faculty from "@enum/faculty";
 
 @Entity()
@@ -22,9 +22,6 @@ class Major extends Base {
 
     @Column({ type: "enum", enum: Faculty })
     public faculty: Faculty;
-
-    @Column()
-    public adminId: number;
 
     @ManyToOne(() => Admin, (admin) => admin.id, { cascade: true })
     @JoinColumn({ name: "adminId" })

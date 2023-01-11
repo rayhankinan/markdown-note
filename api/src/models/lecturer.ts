@@ -5,7 +5,7 @@ import {
     JoinTable,
     ManyToMany,
     ManyToOne,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
 } from "typeorm";
 import Base from "@models/base";
 import Major from "@models/major";
@@ -13,10 +13,13 @@ import Course from "@models/course";
 
 @Entity()
 class Lecturer extends Base {
-    @PrimaryColumn({ type: "varchar", length: 255 })
+    @PrimaryGeneratedColumn()
+    readonly id: number;
+
+    @Column({ type: "varchar", length: 255 })
     public name: string;
 
-    @PrimaryColumn()
+    @Column()
     public majorId: number;
 
     @Column({ nullable: true, type: "varchar", length: 255 })

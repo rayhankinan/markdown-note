@@ -4,7 +4,7 @@ import {
     JoinColumn,
     ManyToOne,
     OneToMany,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
 } from "typeorm";
 import Base from "@models/base";
 import Admin from "@models/admin";
@@ -14,10 +14,13 @@ import Faculty from "@enum/faculty";
 
 @Entity()
 class Major extends Base {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
+    readonly id: number;
+
+    @Column()
     public prefix: number;
 
-    @PrimaryColumn({ type: "varchar", length: 255 })
+    @Column({ type: "varchar", length: 255 })
     public name: string;
 
     @Column({ type: "enum", enum: Faculty })

@@ -5,18 +5,23 @@ import {
     JoinTable,
     ManyToMany,
     ManyToOne,
-    PrimaryColumn,
+    OneToMany,
+    PrimaryGeneratedColumn,
 } from "typeorm";
 import Base from "@models/base";
 import Lecturer from "@models/lecturer";
-import Grade from "./grade";
+import Grade from "@models/grade";
+import Page from "@models/page";
 
 @Entity()
 class Course extends Base {
-    @PrimaryColumn({ type: "varchar", length: 255 })
+    @PrimaryGeneratedColumn()
+    readonly id: number;
+
+    @Column({ type: "varchar", length: 255 })
     public code: string;
 
-    @PrimaryColumn({ type: "varchar", length: 255 })
+    @Column({ type: "varchar", length: 255 })
     public name: string;
 
     @Column({ type: "text", nullable: true })
@@ -29,6 +34,9 @@ class Course extends Base {
     @ManyToOne(() => Grade, (grade) => grade.courses, { cascade: true })
     @JoinColumn({ name: "gradeId" })
     public grade: Promise<Grade>;
+
+    @OneToMany(() => Page, (page) => page.course)
+    readonly pages: Promise<Page[]>;
 }
 
 export default Course;

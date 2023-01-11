@@ -3,8 +3,10 @@ import User from "@models/user";
 import Admin from "@models/admin";
 import Viewer from "@models/viewer";
 import Major from "@models/major";
+import Grade from "@models/grade";
 import Course from "@models/course";
 import Lecturer from "@models/lecturer";
+import Page from "@models/page";
 
 const dataSourceOptions: DataSourceOptions = {
     type: "postgres",
@@ -24,7 +26,7 @@ const dataSourceOptions: DataSourceOptions = {
     },
     synchronize: true,
     logging: true,
-    entities: [User, Admin, Viewer, Major, Course, Lecturer],
+    entities: [User, Admin, Viewer, Major, Grade, Course, Lecturer, Page],
     subscribers: [],
     migrations: [],
 };

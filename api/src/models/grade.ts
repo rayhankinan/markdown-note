@@ -1,9 +1,10 @@
 import {
+    Column,
     Entity,
     JoinColumn,
     ManyToOne,
     OneToMany,
-    PrimaryColumn,
+    PrimaryGeneratedColumn,
 } from "typeorm";
 import Base from "@models/base";
 import Major from "@models/major";
@@ -11,10 +12,13 @@ import Course from "@models/course";
 
 @Entity()
 class Grade extends Base {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
+    readonly id: number;
+
+    @Column()
     public semester: number;
 
-    @PrimaryColumn()
+    @Column()
     public majorId: number;
 
     @ManyToOne(() => Major, (major) => major.grades, { cascade: true })
